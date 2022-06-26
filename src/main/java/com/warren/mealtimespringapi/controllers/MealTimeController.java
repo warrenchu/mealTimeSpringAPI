@@ -27,6 +27,7 @@ public class MealTimeController {
                 .queryParam("limit", limit)
                 .queryParam("term",  cuisineType)
                 .queryParam("price", price)
+                .queryParam("locale", "en_CA")
                 .queryParam("radius", 15000)
                 .encode()
                 .toUriString();
