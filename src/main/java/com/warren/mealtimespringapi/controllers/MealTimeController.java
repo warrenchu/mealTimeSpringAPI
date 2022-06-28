@@ -20,7 +20,8 @@ public class MealTimeController {
 
     @GetMapping("/restaurants")
     public ResponseEntity<?> getRandomRestaurantInCity(@RequestParam(name="cityName") String cityName, @RequestParam (name="price") int price,
-                                                       @RequestParam(name="cuisine") String cuisineType, @RequestParam(name="limit") int limit){
+                                                       @RequestParam(name="cuisine") String cuisineType, @RequestParam(name="limit") int limit,
+                                                       @RequestParam(name="radius") int radius){
         RestTemplate restTemplate = new RestTemplate();
         String uri = UriComponentsBuilder.fromHttpUrl(api_Address)
                 .queryParam("location", cityName)
@@ -28,7 +29,7 @@ public class MealTimeController {
                 .queryParam("term",  cuisineType)
                 .queryParam("price", price)
                 .queryParam("locale", "en_CA")
-                .queryParam("radius", 15000)
+                .queryParam("radius", radius)
                 .encode()
                 .toUriString();
         HttpHeaders headers = new HttpHeaders();
